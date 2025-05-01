@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cade Turton | Professional Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --iu-crimson: #990000;
+      --iu-cream: #f5f5f5;
+      --iu-dark: #2d2926;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background-color: var(--iu-cream);
+      color: var(--iu-dark);
+    }
+
+    header {
+      background-color: var(--iu-crimson);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--iu-dark);
+    }
+
+    nav a {
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      background-color: #4d0000;
+    }
+
+    .hero {
+      background-color: #e6e6e6;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #444;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: var(--iu-crimson);
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-left: 5px solid var(--iu-crimson);
+      padding: 25px;
+      border-radius: 6px;
+      width: 300px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: var(--iu-dark);
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: var(--iu-dark);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Cade Turton</h1>
+  <p>Informatics Student | Data & Design | Indiana University Bloomington</p>
+</header>
+
+<nav>
+  <a href="#projects">Projects</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+  <h1>Welcome</h1>
+  <p>Explore my work and journey as a student passionate about solving problems through technology and design.</p>
+</section>
+
+<section id="projects" class="section">
+  <h2>Featured Projects</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>AI Match Predictor</h3>
+      <p>A machine learning project that predicts the outcome of EPL matches using real match data. I scraped data from FBref using requests and BeautifulSoup, cleaned it with pandas, and built predictive models using scikit-learn. The project includes model training, evaluation, and performance tuning to classify match outcomes based on historical stats.</p>
+    </div>
+    <div class="card">
+      <h3>Pokémon Battle System</h3>
+      <p>A turn-based combat simulator built in Python using object-oriented programming. Features include type advantages, health tracking, and modular classes for trainers and Pokémon to enable strategy-driven battles.</p>
+    </div>
+    <div class="card">
+      <h3>Rental Website</h3>
+      <p>A full-stack rental management platform built with Flask, SQL, and HTML/CSS. Supports user login, dynamic inventory browsing, and a functional rental and return system with database integration.</p>
+    </div>
+    <div class="card">
+      <h3>InfoGuard</h3>
+      <p>A UX research and design project focused on combating online misinformation. I conducted user interviews, developed personas, and designed a prototype that helps users recognize false information and reduce ideological polarization.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <h2>About Me</h2>
+  <p>
+    I'm currently studying Informatics at Indiana University with interests spanning data analysis, UX design, and software development.
+    My projects reflect a commitment to solving real-world challenges through human-centered and technically sound solutions.
+    I bring energy, curiosity, and a desire to learn into every collaboration.
+  </p>
+</section>
+
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <p>Email: cturton@iu.edu</p>
+  <p>Phone: (317) 515-8416</p>
+  <p>Location: Bloomington, Indiana</p>
+</section>
+
+<footer>
+  &copy; 2025 Cade Turton · Indiana University Bloomington · All rights reserved.
+</footer>
+
+</body>
+</html>
