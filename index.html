@@ -2,185 +2,615 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cade Turton | Professional Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cade Turton | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --iu-crimson: #990000;
-      --iu-cream: #f5f5f5;
-      --iu-dark: #2d2926;
+      --bg: #0b0f19;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.1);
+      --text: #eef2ff;
+      --muted: #a7b0c3;
+      --line: rgba(255,255,255,0.12);
+      --accent: #990000;
+      --accent-2: #c62828;
+      --glow: rgba(153, 0, 0, 0.35);
+      --max: 1180px;
+      --radius: 22px;
     }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0;
-      background-color: var(--iu-cream);
-      color: var(--iu-dark);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(153,0,0,0.22), transparent 35%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.08), transparent 20%),
+        linear-gradient(180deg, #0b0f19 0%, #101827 100%);
+      line-height: 1.6;
     }
 
-    header {
-      background-color: var(--iu-crimson);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
     }
 
-    nav {
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 25, 0.7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
       display: flex;
-      justify-content: center;
-      background-color: var(--iu-dark);
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
     }
 
-    nav a {
-      color: white;
-      padding: 15px 25px;
-      text-decoration: none;
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: 1.05rem;
+    }
+
+    .brand span { color: #ff8a8a; }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
       font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    nav a:hover {
-      background-color: #4d0000;
+    .button:hover { transform: translateY(-2px); }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px var(--glow);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--line);
+      color: var(--text);
     }
 
     .hero {
-      background-color: #e6e6e6;
-      text-align: center;
-      padding: 80px 20px;
+      padding: 6rem 0 4rem;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-card,
+    .project-card,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 50px rgba(0,0,0,0.28);
+    }
+
+    .hero-copy {
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(153,0,0,0.35), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #ffd7d7;
+      background: rgba(153, 0, 0, 0.2);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 1.02;
+      margin: 0 0 1rem;
+      letter-spacing: -0.04em;
     }
 
     .hero p {
-      font-size: 20px;
-      color: #444;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 42rem;
+      margin-bottom: 1.6rem;
     }
 
-    .section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section h2 {
-      text-align: center;
-      color: var(--iu-crimson);
-      margin-bottom: 40px;
-    }
-
-    .cards {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
     }
 
-    .card {
-      background: white;
-      border-left: 5px solid var(--iu-crimson);
-      padding: 25px;
-      border-radius: 6px;
-      width: 300px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
     }
 
-    .card h3 {
-      color: var(--iu-dark);
-      margin-bottom: 10px;
+    .stat {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
     }
+
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .hero-card h2 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .tag {
+      padding: 0.6rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d7deed;
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 1.5rem 0 3rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      padding: 1.5rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .project-type {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffd0d0;
+      background: rgba(153,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: auto;
+      margin-bottom: 1rem;
+    }
+
+    .chip {
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #e6ebf7;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      color: #ffb1b1;
+      font-weight: 700;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .section-card,
+    .contact-card {
+      padding: 1.6rem;
+    }
+
+    .section-card p,
+    .contact-card p,
+    .contact-card li {
+      color: var(--muted);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+
+    .contact-list li { margin-bottom: 0.7rem; }
 
     footer {
-      background-color: var(--iu-dark);
-      color: white;
+      padding: 2rem 0 3rem;
+      color: var(--muted);
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .projects-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-card,
+      .project-card,
+      .contact-card {
+        padding: 1.25rem;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Cade Turton</h1>
-  <p>Informatics Student | Data & Design | Indiana University Bloomington</p>
-</header>
-
-<nav>
-  <a href="#projects">Projects</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<section class="hero">
-  <h1>Welcome</h1>
-  <p>Explore my work and journey as a student passionate about solving problems through technology and design.</p>
-</section>
-
-<section id="projects" class="section">
-  <h2>Featured Projects</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>AI Match Predictor</h3>
-      <p>A machine learning project that predicts the outcome of EPL matches using real match data. I scraped data from FBref using requests and BeautifulSoup, cleaned it with pandas, and built predictive models using scikit-learn. The project includes model training, evaluation, and performance tuning to classify match outcomes based on historical stats.</p>
-      <a href="https://github.com/cturton/AIpredictor" target="_blank" style="color:#990000; font-weight:600; text-decoration:none;">
-        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16" height="16" alt="GitHub" style="vertical-align: middle; margin-right: 5px;">
-        View AI Match Predictor on GitHub
-      </a>      
-    </div>
-    <div class="card">
-      <h3>Pokémon Battle System</h3>
-      <p>A turn-based combat simulator built in Python using object-oriented programming. Features include type-based strategy, damage calculation, trainer adoption logic, and multi-round battles with HP tracking. Includes modules for managing Pokémon, people, CSV data, and a dynamic CLI battle menu.</p>
-      <br>
-      <p style="margin-top: 10px;">
-        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16" height="16" alt="GitHub" style="vertical-align: middle; margin-right: 6px;">
-        <a href="https://github.com/cturton/Battlesimulator" target="_blank" style="color:#990000; font-weight:600; text-decoration:none;">
-          View Battle Simulator on GitHub
-        </a>
-      </p>
-         
-    </div>
-    <div class="card">
-      <h3>Rental Website</h3>
-      <p>A full-stack rental management platform built with Flask, SQL, and HTML/CSS. Supports user login, dynamic inventory browsing, and a functional rental and return system with database integration.</p>
-      <a href="https://cgi.luddy.indiana.edu/~cturton/i211_project/index.cgi/" target="_blank" style="color:#990000; font-weight:600; text-decoration:none;">
-        🔗 View I211 Project Live Demo
-      </a>      
-    </div>
-    <div class="card">
-      <h3>InfoGuard</h3>
-      <p>A UX research and design project focused on combating online misinformation. I conducted user interviews, developed personas, and designed a prototype that helps users recognize false information and reduce ideological polarization.</p>
-      <a href="https://bit.ly/4iEacJP" target="_blank" style="color:#990000; font-weight:600; text-decoration:none;">
-        View InfoGuard Prototype
-      </a>      
+  <div class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top">Cade<span>.</span></a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </div>
-</section>
 
-<section id="about" class="section">
-  <h2>About Me</h2>
-  <p>
-    I'm currently studying Informatics at Indiana University with interests spanning data analysis, UX design, and software development.
-    My projects reflect a commitment to solving real-world challenges through human-centered and technically sound solutions.
-    I bring energy, curiosity, and a desire to learn into every collaboration.
-  </p>
-</section>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Informatics Student · Data · UX · Software</div>
+          <h1>Building practical tech that solves real problems.</h1>
+          <p>
+            I’m Cade Turton, an Informatics student at Indiana University with experience in data-driven projects,
+            UX design, and full-stack development. I like building projects that are useful, clear, and grounded in real-world needs.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View Projects</a>
+            <a class="button secondary" href="mailto:cturton@iu.edu">Contact Me</a>
+          </div>
+          <div class="quick-stats">
+            <div class="stat">
+              <strong>4+</strong>
+              <span>Featured projects</span>
+            </div>
+            <div class="stat">
+              <strong>Data + UX</strong>
+              <span>Cross-functional focus</span>
+            </div>
+            <div class="stat">
+              <strong>Indiana U</strong>
+              <span>Bloomington</span>
+            </div>
+          </div>
+        </div>
 
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>Email: cturton@iu.edu</p>
-  <p>Phone: (317) 515-8416</p>
-  <p>Location: Bloomington, Indiana</p>
-</section>
+        <aside class="hero-card">
+          <div>
+            <h2>What I work on</h2>
+            <p style="color: var(--muted); margin-top: 0.6rem;">
+              I focus on building data-driven tools that help people and businesses make better decisions. I’m especially interested in combining analytics, automation, and simple interfaces to turn raw data into clear, actionable insights.
+            </p>
+            <p style="color: var(--muted); margin-top: 0.6rem;">
+              Long term, I want to work in roles that sit between business and technology — using data, AI, and software to solve real operational problems and improve how organizations run.
+            </p>
+          </div>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">SQL</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<footer>
-  &copy; 2025 Cade Turton · Indiana University Bloomington · All rights reserved.
-</footer>
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured Projects</h2>
+            <p>A few projects that show my range across machine learning, software development, databases, and UX design.</p>
+          </div>
+        </div>
 
-</body>
-</html>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-top">
+              <h3 class="project-title">AI Match Predictor</h3>
+              <span class="project-type">Machine Learning</span>
+            </div>
+            <p>
+              Built a model to predict English Premier League match outcomes using scraped match data, feature engineering, and classification workflows.
+            </p>
+            <div class="project-stack">
+              <span class="chip">Python</span>
+              <span class="chip">BeautifulSoup</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Scikit-learn</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/cturton/AIpredictor" target="_blank">GitHub ↗</a>
+            </div>
+          </article>
 
+          <article class="project-card">
+            <div class="project-top">
+              <h3 class="project-title">Pokémon Battle System</h3>
+              <span class="project-type">Software Dev</span>
+            </div>
+            <p>
+              Created a turn-based battle simulator with object-oriented design, trainer logic, HP tracking, and modular file handling.
+            </p>
+            <div class="project-stack">
+              <span class="chip">Python</span>
+              <span class="chip">OOP</span>
+              <span class="chip">CSV Parsing</span>
+              <span class="chip">CLI Design</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/cturton/Battlesimulator" target="_blank">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3 class="project-title">AI Business Helper</h3>
+              <span class="project-type">Data / AI</span>
+            </div>
+            <p>
+              Designed an AI-driven tool that analyzes small business data (Excel/CSV) to identify inefficiencies, financial risks, and growth opportunities, then outputs clear, actionable insights.
+            </p>
+            <div class="project-stack">
+              <span class="chip">Python</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Data Analysis</span>
+              <span class="chip">AI / Automation</span>
+            </div>
+            <div class="project-links">
+              <a href="#">Case Study (Coming Soon)</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3 class="project-title">InfoGuard</h3>
+              <span class="project-type">UX Research</span>
+            </div>
+            <p>
+              Designed a misinformation-detection concept through interviews, personas, and prototyping to help users recognize false information online.
+            </p>
+            <div class="project-stack">
+              <span class="chip">UX Research</span>
+              <span class="chip">Wireframing</span>
+              <span class="chip">User Interviews</span>
+              <span class="chip">Prototyping</span>
+            </div>
+            <div class="project-links">
+              <a href="https://bit.ly/4iEacJP" target="_blank">Prototype ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="section-card">
+          <h2>About Me</h2>
+          <p>
+            I’m an Informatics student at Indiana University interested in data analysis, UX, and software development.
+            My goal is to build technology that is useful, intuitive, and grounded in strong problem solving.
+          </p>
+          <p>
+            I’m especially interested in roles where I can bridge technical work and business value — turning messy information into something clear, practical, and actionable.
+          </p>
+        </div>
+        <div class="section-card">
+          <h2>What I Bring</h2>
+          <p>
+            My work blends technical implementation with communication and design thinking. I enjoy learning quickly, collaborating well, and taking a project from concept to something real.
+          </p>
+          <div class="tag-list" style="margin-top: 1rem;">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Analytical Thinking</span>
+            <span class="tag">User-Centered Design</span>
+            <span class="tag">Collaboration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <h2>Contact</h2>
+          <p>I’m open to roles and conversations in data, business analytics, and technology.</p>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:cturton@iu.edu">cturton@iu.edu</a></li>
+            <li><strong>Phone:</strong> <a href="tel:13175158416">(317) 515-8416</a></li>
+            <li><strong>Location:</strong> Bloomington, Indiana</li>
+          </ul>
+        </div>
+        <div class="contact-card">
+          <h2>Connect</h2>
+          <p>
+            You can learn more about my experience, projects, and professional background on my LinkedIn.
+          </p>
+          <a class="button primary" href="https://www.linkedin.com/in/cadeturton" target="_blank">View LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Cade Turton · Portfolio
+  </footer>
 </body>
 </html>
